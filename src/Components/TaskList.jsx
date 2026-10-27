@@ -1,6 +1,7 @@
+
 import TaskItem from "./TaskItem";
 
-function TaskList({ tasks }) {
+function TaskList({ tasks, onToggleTask }) {
   if (tasks.length === 0) {
     return (
       <p className="mt-6 text-sm text-slate-500">
@@ -12,7 +13,11 @@ function TaskList({ tasks }) {
   return (
     <div className="mt-6 space-y-3">
       {tasks.map((task) => (
-        <TaskItem key={task.id} task={task} />
+        <TaskItem
+          key={task.id}
+          task={task}
+          onToggleTask={onToggleTask}
+        />
       ))}
     </div>
   );

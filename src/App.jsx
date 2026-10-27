@@ -8,6 +8,17 @@ import TaskStats from "./Components/TaskStats";
 function App() {
   const [taskInput, setTaskInput] = useState("");
   const [tasks, setTasks] = useState([]);
+  
+function handleToggleTask(taskId) {
+  setTasks(
+    tasks.map((task) =>
+      task.id === taskId
+        ? { ...task, completed: !task.completed }
+        : task
+    )
+  );
+}
+
 
   function handleAddTask(event) {
     event.preventDefault();
@@ -21,6 +32,7 @@ function App() {
     const newTask = {
       id: Date.now(),
       title: title,
+      completed: false,
     };
 
     setTasks([...tasks, newTask]);
@@ -56,7 +68,10 @@ return (
           onAddTask={handleAddTask}
         />
 
-        <TaskList tasks={tasks} />
+        <TaskList
+          tasks={tasks}
+          onToggleTask={handleToggleTask}
+        />
       </section>
     </main>
   </div>
